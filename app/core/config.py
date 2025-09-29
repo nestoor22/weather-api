@@ -6,9 +6,11 @@ from pydantic_settings import BaseSettings
 
 load_dotenv()
 
+BASE_DIR: str = os.path.abspath(Path(__file__).parent.parent)
+
 
 class Settings(BaseSettings):
-    BASE_DIR: str = os.path.abspath(Path(__file__).parent.parent)
+    LOG_FILE_DIR: str = f"{BASE_DIR}/logs"
     DOCS_URL: str = "/docs"
     USE_JSON_LOGGING: bool = False
     LOG_LEVEL: str = "INFO"

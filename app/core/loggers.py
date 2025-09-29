@@ -1,11 +1,15 @@
 import logging
 import logging.config
+import os.path
 from logging import Logger
 
 from json_log_formatter import JSONFormatter, VerboseJSONFormatter
 
 from .config import settings
 from .context_vars import TraceId
+
+if not os.path.exists(settings.LOG_FILE_DIR):
+    os.makedirs(settings.LOG_FILE_DIR)
 
 
 class _VerboseJSONFormatter(VerboseJSONFormatter):
@@ -41,26 +45,30 @@ def configure_logger():
                     ),
                     "level": logging.getLevelName(settings.LOG_LEVEL),
                 },
-                "console_simple": {
-                    "class": "logging.StreamHandler",
+                "file": {
+                    "class": "logging.FileHandler",
                     "formatter": (
-                        "simple_json" if settings.USE_JSON_LOGGING else None
+                        "detailed_json" if settings.USE_JSON_LOGGING else None
                     ),
                     "level": logging.getLevelName(settings.LOG_LEVEL),
+                    "filename": os.path.join(
+                        settings.LOG_FILE_DIR, "weather-api.logs"
+                    ),
+                    "encoding": "utf-8",
                 },
             },
             "loggers": {
                 "weather-api": {
-                    "handlers": ["console"],
+                    "handlers": ["console", "file"],
                     "propagate": False,
                     "level": logging.getLevelName(settings.LOG_LEVEL),
                 },
                 "uvicorn": {
-                    "handlers": ["console_simple"],
+                    "handlers": ["console"],
                     "propagate": False,
                 },
             },
-            "root": {"handlers": ["console_simple"]},
+            "root": {"handlers": ["console", "file"]},
         }
     )
 
