@@ -34,7 +34,8 @@ async def safe_validation_exception_handler(
         extra={"errors": errors},
     )
     return JSONResponse(
-        status_code=422, content={"detail": errors},
+        status_code=422,
+        content={"detail": errors},
     )
 
 
@@ -53,7 +54,7 @@ async def general_exception_handler(
     )
     return JSONResponse(
         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-        content={"detail": "Something went wrong."},
+        content={"detail": "Something went wrong"},
     )
 
 
