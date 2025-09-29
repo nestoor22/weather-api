@@ -34,8 +34,7 @@ async def safe_validation_exception_handler(
         extra={"errors": errors},
     )
     return JSONResponse(
-        status_code=422,
-        content={"detail": errors},
+        status_code=422, content={"detail": errors},
     )
 
 
