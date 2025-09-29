@@ -1,0 +1,11 @@
+__pycache__
+.history
+.vscode
+.idea
+.DS_Store
+.git
+
+venv
+.venv
+nginx
+tests
