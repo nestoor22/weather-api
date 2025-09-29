@@ -8,3 +8,4 @@ pip-tools==7.3.0
 pytest-asyncio==0.23.3
 pip-tools
 awscli-local
+bandit[toml]==1.7.9

@@ -166,10 +166,3 @@ cython_debug/
 credentials.json
 
 *.scratch.txt
-
-**/.vscode
-.trunk/
-.DS_Store
-.claude/CLAUDE.md
-test_local.sh
-
