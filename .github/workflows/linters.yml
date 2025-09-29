@@ -31,7 +31,7 @@ jobs:
       - name: Get changed files
         id: get-changed-files
         run: |
-          echo "changed_files=$(git diff --name-only --diff-filter=dr origin/${{ github.event.pull_request.base.ref }} | grep 'backend/app' | grep '\.py' | tr '\n' ' ')" >> $GITHUB_ENV
+          echo "changed_files=$(git diff --name-only --diff-filter=dr origin/${{ github.event.pull_request.base.ref }} | grep 'app' | grep '\.py' | tr '\n' ' ')" >> $GITHUB_ENV
       - name: Setup Python
         uses: actions/setup-python@v3
         with:
